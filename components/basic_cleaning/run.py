@@ -27,7 +27,15 @@ def go(args):
     df = df.dropna(subset=["price"])
     df = df[(df["price"] >= args.min_price) & (df["price"] <= args.max_price)]
 
-    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    # Coerce lat/long to numeric (sample2 can contain malformed values)
+    df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
+    df["latitude"]  = pd.to_numeric(df["latitude"], errors="coerce")
+
+    # Drop rows with missing/invalid coordinates
+    df = df.dropna(subset=["longitude", "latitude"]).copy()
+
+    # Keep only properties in/around NYC
+    idx = df["longitude"].between(-74.25, -73.50) & df["latitude"].between(40.5, 41.2)
     df = df[idx].copy()
 
     # Save cleaned
