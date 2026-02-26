@@ -1,0 +1,13 @@
+name: train_random_forest
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pandas
+  - numpy
+  - scikit-learn
+  - joblib
+  - pip
+  - pip:
+      - wandb
+      - mlflow

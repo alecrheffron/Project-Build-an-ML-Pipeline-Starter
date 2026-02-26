@@ -1,0 +1,19 @@
+name: data_check
+
+conda_env: conda.yml
+
+entry_points:
+  main:
+    parameters:
+      csv: {type: str}
+      ref: {type: str}
+      min_price: {type: float}
+      max_price: {type: float}
+      kl_threshold: {type: float}
+    command: >
+      python run.py
+      --csv {csv}
+      --ref {ref}
+      --min_price {min_price}
+      --max_price {max_price}
+      --kl_threshold {kl_threshold}

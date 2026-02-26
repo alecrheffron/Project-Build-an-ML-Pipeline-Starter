@@ -1,0 +1,10 @@
+name: basic_cleaning
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pandas
+  - numpy
+  - pip
+  - pip:
+      - wandb
